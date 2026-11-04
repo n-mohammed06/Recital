@@ -1,4 +1,4 @@
-*Dernière mise à jour : 2 novembre 2026*
+*Dernière mise à jour : 4 novembre 2026*
 
 > **En bref.** Récital garde seulement ce qui sert à faire fonctionner ton compte : ton prénom, ton nom, ton adresse e-mail, ton mot de passe (sous une forme illisible) et tes réglages. Pas de publicité, pas de mesure d’audience, aucune donnée vendue. Tu peux consulter, corriger ou supprimer tes données quand tu veux.
 
@@ -21,7 +21,7 @@ Ces informations sont obligatoires : sans elles, nous ne pouvons pas créer ton
 
 ### Quand tu utilises le site
 
-- tes réglages, choisis dans ton profil : les noms des notes (Do Ré Mi ou C D E) et ton objectif de pratique du jour ;
+- tes réglages, choisis dans ton profil : les noms des notes (Do Ré Mi ou C D E), ton objectif de pratique du jour et ton avatar. L’avatar est l’un des dessins proposés par Récital, ou tes initiales : tu n’envoies jamais de photo ;
 - la date de ta dernière connexion, pour savoir si ton compte sert encore ;
 - pendant ta session : l’adresse IP de ta connexion, le type de navigateur et d’appareil, et l’heure de ta dernière activité ;
 - si tu coches « Se souvenir de moi » : un jeton de connexion, enregistré avec ton compte et dans un cookie ;
@@ -103,7 +103,7 @@ Tu peux à tout moment :
 - les **récupérer** dans un format lisible par une machine (portabilité) ;
 - donner des **directives** sur ce que deviennent tes données après ton décès.
 
-Ton prénom, ton nom, ton mot de passe et tes réglages se modifient directement dans ton profil. Pour tout le reste, écris à [adresse e-mail de contact], de préférence depuis l’adresse de ton compte. Nous te répondons dans un délai d’un mois. Si nous avons un doute raisonnable sur ton identité, nous pouvons te demander de la confirmer.
+Ton prénom, ton nom, ton avatar, ton mot de passe et tes réglages se modifient directement dans ton profil. Pour tout le reste, écris à [adresse e-mail de contact], de préférence depuis l’adresse de ton compte. Nous te répondons dans un délai d’un mois. Si nous avons un doute raisonnable sur ton identité, nous pouvons te demander de la confirmer.
 
 Si tu estimes que tes droits ne sont pas respectés, tu peux adresser une réclamation à la CNIL, en ligne sur [cnil.fr/fr/plaintes](https://www.cnil.fr/fr/plaintes), ou par courrier : CNIL, Service des plaintes, 3 place de Fontenoy, 75007 Paris.
 

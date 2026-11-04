@@ -50,6 +50,37 @@ class ProfileController extends Controller
     }
 
     /**
+     * Page « Ton avatar » : les dessins proposés, ou les initiales.
+     */
+    public function editAvatar(Request $request): View
+    {
+        return view('profile.avatar', [
+            'user' => $request->user(),
+            'avatars' => config('recital.avatars'),
+        ]);
+    }
+
+    /**
+     * Enregistre l'avatar choisi. « Mes initiales » envoie une valeur vide.
+     */
+    public function updateAvatar(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'avatar' => ['present', 'nullable', 'string', Rule::in(array_keys(config('recital.avatars')))],
+        ], [
+            'avatar.present' => 'Choisis un avatar.',
+            'avatar.string' => 'Choisis un des avatars proposés.',
+            'avatar.in' => 'Choisis un des avatars proposés.',
+        ]);
+
+        $request->user()->update(['avatar' => $data['avatar']]);
+
+        return redirect()->route('profile')->with('status', $data['avatar'] === null
+            ? 'Ton profil affiche de nouveau tes initiales.'
+            : 'Ton avatar est enregistré.');
+    }
+
+    /**
      * Enregistre les réglages : noms des notes et objectif du jour.
      */
     public function updateSettings(Request $request): RedirectResponse

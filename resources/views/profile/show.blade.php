@@ -10,7 +10,18 @@
         @endif
 
         <header class="dg-profil">
-            <span class="dg-avatar" aria-hidden="true">{{ $user->initials() }}</span>
+            {{-- L'avatar mène à la page où on le change : un petit crayon doré le signale. --}}
+            <a class="dg-avatar-lien" href="{{ route('profile.avatar') }}">
+                @if ($user->avatarUrl())
+                    <img class="dg-avatar" src="{{ $user->avatarUrl() }}" alt="" width="72" height="72">
+                @else
+                    <span class="dg-avatar" aria-hidden="true">{{ $user->initials() }}</span>
+                @endif
+                <span class="dg-avatar-lien__crayon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M4 20l1-4.5L15.5 5a2.1 2.1 0 0 1 3 3L8 18.5z"/><path d="M13.5 7l3 3"/></svg>
+                </span>
+                <span class="dg-visuellement-cache">Changer d’avatar</span>
+            </a>
             <div class="dg-profil__texte">
                 <p class="dg-surtitre">Niveau {{ $progress->level }}</p>
                 <h1 class="dg-titre-1"><span class="dg-visuellement-cache">Profil de </span>{{ $user->fullName() }}</h1>
@@ -100,6 +111,12 @@
                 </div>
             </dl>
             <ul class="dg-menu">
+                <li>
+                    <a class="dg-menu__lien" href="{{ route('profile.avatar') }}">
+                        Choisir mon avatar
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                </li>
                 <li>
                     <a class="dg-menu__lien" href="{{ route('profile.information') }}">
                         Modifier mon prénom et mon nom

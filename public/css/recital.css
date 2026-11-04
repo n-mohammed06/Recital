@@ -720,6 +720,117 @@ button, input { font: inherit; color: inherit; }
 }
 .dg-menu__lien:hover { color: var(--lien); }
 
+/* ---------- Avatar ---------- */
+/* Dans le profil, l'avatar est un lien vers son choix, signalé par un petit crayon doré */
+img.dg-avatar { display: block; }
+.dg-avatar-lien {
+  position: relative;
+  flex: none;
+  display: block;
+  border-radius: var(--rayon-plein);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* L'anneau doré de l'avatar reste visible : celui du focus passe autour */
+.dg-avatar-lien:focus-visible { box-shadow: none; outline: 2px solid var(--lien); outline-offset: 6px; }
+.dg-avatar-lien__crayon {
+  position: absolute;
+  right: -3px; bottom: -3px;
+  display: grid;
+  place-items: center;
+  width: 26px; height: 26px;
+  border-radius: var(--rayon-plein);
+  background: var(--dore);
+  box-shadow: 0 0 0 2px var(--surface);
+  color: #1A0B2E;
+}
+.dg-avatar-lien__crayon svg {
+  width: 14px; height: 14px;
+  fill: none; stroke: currentColor; stroke-width: 2.4;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* Page « Ton avatar » : de vrais boutons radio, cachés derrière chaque dessin */
+.dg-avatars { display: grid; gap: var(--espace-6); min-width: 0; margin: 0; padding: 0; border: 0; }
+.dg-avatars__grille {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--espace-5) var(--espace-3);
+}
+.dg-choix-avatar {
+  --derriere: var(--surface);
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: var(--espace-3);
+  min-width: 0;
+}
+.dg-choix-avatar__input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%; height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.dg-choix-avatar__image {
+  display: grid;
+  place-items: center;
+  width: 100%; max-width: 96px; height: auto;
+  aspect-ratio: 1;
+  border-radius: var(--rayon-plein);
+  transition: box-shadow 120ms;
+}
+.dg-choix-avatar__nom {
+  max-width: 100%;
+  font-size: 13px; line-height: 17px;
+  color: var(--encre-douce);
+  text-align: center;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.dg-choix-avatar:hover .dg-choix-avatar__nom { color: var(--encre); }
+/* Le choix : un anneau doré, comme l'avatar du profil, et le nom en gras */
+.dg-choix-avatar__input:checked ~ .dg-choix-avatar__image { box-shadow: 0 0 0 3px var(--derriere), 0 0 0 6px var(--dore); }
+.dg-choix-avatar__input:checked ~ .dg-choix-avatar__nom { color: var(--encre); font-weight: 700; }
+.dg-choix-avatar__input:focus-visible ~ .dg-choix-avatar__image { outline: 2px solid var(--lien); outline-offset: 8px; }
+@media (forced-colors: active) {
+  .dg-choix-avatar__input:checked ~ .dg-choix-avatar__image { outline: 3px solid CanvasText; outline-offset: 3px; }
+}
+/* « Mes initiales », au-dessus des dessins */
+.dg-choix-avatar--initiales {
+  --derriere: var(--fond);
+  grid-template-columns: auto 1fr;
+  justify-items: start;
+  align-items: center;
+  gap: var(--espace-4);
+  padding: var(--espace-3) var(--espace-4);
+  border-radius: var(--rayon-md);
+  background: var(--fond);
+}
+.dg-choix-avatar--initiales .dg-choix-avatar__image {
+  width: 56px;
+  background: var(--violet);
+  color: var(--dore);
+  font-family: var(--font-display);
+  font-size: 22px; line-height: 1; font-weight: 700;
+}
+.dg-choix-avatar--initiales .dg-choix-avatar__nom { font-size: 16px; line-height: 22px; text-align: left; color: var(--encre); font-weight: 700; }
+
+/* Bouton « Enregistrer » collé au-dessus des onglets pendant qu'on parcourt la grille.
+   61 px : la hauteur des onglets (.dg-nav), sans la marge du bas du téléphone. */
+.dg-barre-action {
+  position: sticky;
+  bottom: calc(61px + max(var(--espace-2), env(safe-area-inset-bottom, 0px)));
+  z-index: 2;
+  margin: 0 calc(-1 * var(--gouttiere-d)) 0 calc(-1 * var(--gouttiere-g));
+  padding: var(--espace-3) var(--gouttiere-d) var(--espace-3) var(--gouttiere-g);
+  border-top: 1px solid var(--ligne);
+  background: var(--surface);
+}
+
 /* ---------- Page « Bientôt disponible » ---------- */
 .dg-bientot { display: grid; justify-items: start; gap: var(--espace-3); }
 .dg-pastille {

@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
  * MustVerifyEmail : l'adresse doit être confirmée avec le lien reçu par e-mail
  * avant d'accéder aux pages réservées (middleware « verified »).
  */
-#[Fillable(['first_name', 'last_name', 'email', 'password', 'note_names', 'daily_goal'])]
+#[Fillable(['first_name', 'last_name', 'email', 'password', 'note_names', 'daily_goal', 'avatar'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -79,6 +79,25 @@ class User extends Authenticatable implements MustVerifyEmail
     public function initials(): string
     {
         return Str::upper(Str::substr($this->first_name, 0, 1).Str::substr($this->last_name, 0, 1));
+    }
+
+    /**
+     * L'avatar choisi dans le profil, s'il fait toujours partie des dessins proposés
+     * (config/recital.php). Sinon null : le profil montre les initiales.
+     */
+    public function chosenAvatar(): ?string
+    {
+        return array_key_exists((string) $this->avatar, config('recital.avatars', [])) ? $this->avatar : null;
+    }
+
+    /**
+     * Adresse du dessin de l'avatar, ou null quand le profil montre les initiales.
+     */
+    public function avatarUrl(): ?string
+    {
+        $avatar = $this->chosenAvatar();
+
+        return $avatar === null ? null : asset('avatars/'.$avatar.'.svg');
     }
 
     /**

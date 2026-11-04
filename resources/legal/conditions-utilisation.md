@@ -1,4 +1,4 @@
-*Dernière mise à jour : 2 novembre 2026*
+*Dernière mise à jour : 4 novembre 2026*
 
 > **En bref.** Récital est un site gratuit pour apprendre le piano sur ton téléphone. Pour l’utiliser, tu crées un compte avec ton adresse e-mail. Garde ton mot de passe pour toi, utilise le site normalement, et tu peux supprimer ton compte quand tu veux.
 
@@ -31,7 +31,7 @@ Récital est un outil d’apprentissage : il ne remplace pas un professeur de p
 - Un compte par personne. Ton compte est personnel : ne le prête pas.
 - Ton mot de passe doit faire au moins 8 caractères, avec au moins une lettre et un chiffre. Un mot de passe déjà apparu dans une fuite de données est refusé. Garde-le secret et ne l’utilise pas sur d’autres sites.
 - Si tu oublies ton mot de passe, la page « Mot de passe oublié » t’envoie un lien pour en choisir un nouveau.
-- Ton prénom, ton nom, ton mot de passe et tes réglages se modifient à tout moment dans ton profil.
+- Ton prénom, ton nom, ton avatar, ton mot de passe et tes réglages se modifient à tout moment dans ton profil.
 - Si tu penses que quelqu’un d’autre utilise ton compte, écris-nous tout de suite à [adresse e-mail de contact].
 
 ## 5. Les règles à respecter

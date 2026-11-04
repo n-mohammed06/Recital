@@ -74,6 +74,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/profil/informations', [ProfileController::class, 'editInformation'])->name('profile.information');
         Route::put('/profil/informations', [ProfileController::class, 'updateInformation'])->name('profile.information.update');
         Route::put('/profil/reglages', [ProfileController::class, 'updateSettings'])->name('profile.settings');
+        Route::get('/profil/avatar', [ProfileController::class, 'editAvatar'])->name('profile.avatar');
+        Route::put('/profil/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
 
         Route::get('/profil/mot-de-passe', [PasswordController::class, 'edit'])->name('profile.password');
         Route::put('/profil/mot-de-passe', [PasswordController::class, 'update'])

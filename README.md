@@ -5,10 +5,11 @@
 Récital is a mobile-first web app that teaches the piano to complete beginners, a few minutes a day, with an on-screen keyboard, a MIDI keyboard or a real piano. The interface is in French.
 
 <p align="center">
-  <img src="docs/screenshots/coming-soon.png" alt="Coming soon page, with a theatre stage and a grand piano" width="190">
-  <img src="docs/screenshots/login.png" alt="Login page" width="190">
-  <img src="docs/screenshots/profile.png" alt="Student profile with progress and settings" width="190">
-  <img src="docs/screenshots/change-password.png" alt="Change password page with live password rules" width="190">
+  <img src="docs/screenshots/coming-soon.png" alt="Coming soon page, with a theatre stage and a grand piano" width="160">
+  <img src="docs/screenshots/login.png" alt="Login page" width="160">
+  <img src="docs/screenshots/profile.png" alt="Student profile with a cat pianist avatar, progress and settings" width="160">
+  <img src="docs/screenshots/avatar.png" alt="Avatar picker with original drawings of musical animals and living notes" width="160">
+  <img src="docs/screenshots/change-password.png" alt="Change password page with live password rules" width="160">
 </p>
 
 > **Status: work in progress.** The account system is done. The music engine and the lessons come next, and the site is not online yet.
@@ -18,7 +19,8 @@ Récital is a mobile-first web app that teaches the piano to complete beginners,
 ### Done
 
 - **Accounts**: sign-up with email verification, login with a show-password button and "remember me", forgotten password by email.
-- **Profile**: initials, level, progress overview, settings (note names *Do Ré Mi* or *C D E*, daily practice goal), editable first and last name.
+- **Profile**: level, progress overview, settings (note names *Do Ré Mi* or *C D E*, daily practice goal), editable first and last name.
+- **Avatars**: 18 original drawings to choose from, mixing animals, instruments and living notes (a cat at the piano, a snail whose shell is a French horn, a sleeping half note…), or simply your initials.
 - **Password change**: asks for the current password, logs out the other devices and sends a security email.
 - **Coming-soon mode**: before launch, visitors only see a waiting page, while a secret link opens the whole site for testers.
 - **Security**: bcrypt password hashing, leaked passwords refused (Have I Been Pwned, k-anonymity), invisible rate limiting against bots, strict Content Security Policy, CSRF protection and security headers.
@@ -36,7 +38,7 @@ Récital is a mobile-first web app that teaches the piano to complete beginners,
 - **Back end**: Laravel 13 (PHP 8.3+), Blade views
 - **Front end**: hand-written CSS and vanilla JavaScript, with no framework and no build step
 - **Database**: SQLite in development, MySQL in production
-- **Tests**: 61 feature tests with PHPUnit
+- **Tests**: 69 feature tests with PHPUnit
 - **Hosting (planned)**: alwaysdata, in France
 
 Built with the help of an AI coding assistant (Claude).

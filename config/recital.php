@@ -36,4 +36,36 @@ return [
 
     'preview_code' => env('RECITAL_PREVIEW_CODE'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Avatars
+    |--------------------------------------------------------------------------
+    | Les dessins que l'élève peut choisir dans son profil, dans l'ordre de la grille.
+    | À gauche : le nom du fichier dans public/avatars, sans « .svg ». À droite : le nom affiché.
+    |
+    | Ajouter un avatar : déposer son fichier SVG (rond, 120 x 120) dans public/avatars, puis ajouter sa ligne ici.
+    | Retirer un avatar : supprimer sa ligne et son fichier. Les élèves qui l'avaient retrouvent leurs initiales.
+    */
+
+    'avatars' => [
+        'chat-pianiste' => 'Chat pianiste',
+        'renard-violoniste' => 'Renard violoniste',
+        'pingouin-maestro' => 'Pingouin maestro',
+        'lapin-flutiste' => 'Lapin flûtiste',
+        'chouette-solfege' => 'Chouette solfège',
+        'ours-violoncelle' => 'Ours au violoncelle',
+        'herisson-clavier' => 'Hérisson clavier',
+        'croche-rieuse' => 'Croche rieuse',
+        'blanche-dormeuse' => 'Blanche dormeuse',
+        'baleine-chanteuse' => 'Baleine chanteuse',
+        'escargot-cor' => 'Escargot au cor',
+        'croches-jumelles' => 'Croches jumelles',
+        'elephant-trompette' => 'Éléphant trompette',
+        'grenouille-tenor' => 'Grenouille ténor',
+        'oiseau-croche' => 'Oiseau-croche',
+        'pieuvre-orchestre' => 'Pieuvre homme-orchestre',
+        'bourdon-virtuose' => 'Bourdon virtuose',
+        'souris-metronome' => 'Souris au métronome',
+    ],
+
 ];
