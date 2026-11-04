@@ -32,5 +32,8 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <!-- Récital : les tests vérifient le site ouvert, même si le .env active « Bientôt disponible ».
+             ComingSoonTest active ce mode lui-même. -->
+        <env name="RECITAL_COMING_SOON" value="false"/>
     </php>
 </phpunit>

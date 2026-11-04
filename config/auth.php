@@ -41,6 +41,9 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            // Récital : la case « Rester connecté » dure 1 an (en minutes) au lieu de 400 jours.
+            // Cette durée est annoncée dans la politique de confidentialité : garde les deux d'accord.
+            'remember' => 60 * 24 * 365,
         ],
     ],
 

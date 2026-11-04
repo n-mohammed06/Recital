@@ -1,0 +1,790 @@
+/* =====================================================================
+   Récital — styles du site (téléphone uniquement)
+   Thème Nuit par défaut. Toutes les valeurs viennent de la charte.
+   Préfixe des classes : dg-
+   ===================================================================== */
+
+/* ---------- Polices : servies par le site, aucun appel à Google ---------- */
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("../fonts/bodoni-moda.woff") format("woff");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("../fonts/atkinson-hyperlegible-next.woff") format("woff");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Tokens : thème Nuit ---------- */
+:root {
+  color-scheme: dark;
+  --violet: #4B0082; --dore: #D4AF37; --argente: #C0C0C0;
+  --fond: #140A22; --surface: #22113A; --surface-haute: #2E1850;
+  --ligne: #3B2560; --ligne-forte: #8A78A6;
+  --encre: #F3EFF8; --encre-douce: #C0C0C0; --dore-texte: #D4AF37;
+  --action: #D4AF37; --sur-action: #1A0B2E; --sur-violet: #F3EFF8;
+  --lien: #C4A3F7;
+  --juste: #5FD3A8; --juste-doux: #12332B;
+  --a-revoir: #FF9E6B; --a-revoir-doux: #3A1A12;
+  --ombre-carte: 0 6px 20px -8px #000000B3;
+  --anneau-focus: 0 0 0 2px #22113A, 0 0 0 4px #C4A3F7;
+  /* Couleurs des doigts (rubis, topaze, émeraude, saphir, améthyste) */
+  --doigt-1: #D0253B; --doigt-2: #986000; --doigt-3: #0E7C53; --doigt-4: #2362EB; --doigt-5: #933FDE; --sur-doigt: #FFFFFF;
+  --touche-blanche: #F2EFF6; --touche-noire: #0E0618; --touche-bord: #5A4A70; --sur-touche: #3A2E4A;
+  --font-display: "Bodoni Moda", "Bodoni 72", Didot, Georgia, serif;
+  --font-texte: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --espace-1: 4px; --espace-2: 8px; --espace-3: 12px; --espace-4: 16px;
+  --espace-5: 20px; --espace-6: 24px; --espace-8: 32px;
+  --rayon-sm: 8px; --rayon-md: 16px; --rayon-lg: 28px; --rayon-plein: 9999px;
+  --colonne-max: 430px;
+  /* Marges latérales qui respectent l'encoche des téléphones */
+  --gouttiere-g: max(16px, env(safe-area-inset-left, 0px));
+  --gouttiere-d: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Thème Jour : prêt pour plus tard (réglage dans le profil). Il suffira d'ajouter data-theme="jour" sur <html>. */
+:root[data-theme="jour"] {
+  color-scheme: light;
+  --fond: #F6F4F9; --surface: #FFFFFF; --surface-haute: #FFFFFF;
+  --ligne: #E3DEEA; --ligne-forte: #8C8299;
+  --encre: #24123A; --encre-douce: #5E5670; --dore-texte: #86680E;
+  --action: #4B0082; --sur-action: #FFFFFF;
+  --lien: #5B1FB0;
+  --juste: #0B7465; --juste-doux: #DCF2EC;
+  --a-revoir: #B4430E; --a-revoir-doux: #FCEADD;
+  --ombre-carte: 0 1px 2px #24123A0F, 0 4px 14px -4px #24123A1F;
+  --anneau-focus: 0 0 0 2px #FFFFFF, 0 0 0 4px #5B1FB0;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: var(--font-texte);
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: none; box-shadow: var(--anneau-focus); }
+[hidden] { display: none !important; }
+
+/* Texte lu par les lecteurs d'écran, invisible à l'œil */
+.dg-visuellement-cache {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- La colonne du site ---------- */
+/* Sur téléphone, elle prend tout l'écran. Plus large, elle reste centrée. */
+.dg-app {
+  width: 100%;
+  max-width: var(--colonne-max);
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--surface);
+}
+
+/* Pages simples (accueil, textes légaux) */
+.dg-compte {
+  display: grid;
+  align-content: start;
+  gap: var(--espace-6);
+  padding:
+    max(var(--espace-4), env(safe-area-inset-top, 0px))
+    var(--gouttiere-d)
+    max(var(--espace-8), env(safe-area-inset-bottom, 0px))
+    var(--gouttiere-g);
+}
+.dg-compte__haut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-3);
+  min-height: 48px;
+}
+.dg-compte__intro { display: grid; gap: var(--espace-2); }
+.dg-compte__texte { margin: 0; color: var(--encre-douce); }
+
+/* ---------- Scène au piano : pages de compte ---------- */
+/* Fond de la charte (surface). Connexion et inscription : une scène de théâtre en haut. Partout : le clavier en bas. */
+.dg-scene {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+/* La scène de théâtre, avec le titre et le slogan posés dans l'ombre, devant la scène */
+.dg-scene__theatre {
+  position: relative;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 360px;
+  padding: 0 var(--gouttiere-d) var(--espace-2) var(--gouttiere-g);
+  background: #0B0705;
+}
+.dg-scene__decor { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+/* Le bas de la scène se fond dans le violet de la page */
+.dg-scene__theatre::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 120px;
+  background: linear-gradient(180deg, #22113A00 0%, var(--surface) 100%);
+  pointer-events: none;
+}
+.dg-scene__theatre .dg-scene__entete { position: relative; z-index: 1; margin-bottom: 0; }
+/* Le projecteur respire doucement */
+.dg-theatre__flaque { animation: dg-projecteur 5s ease-in-out infinite alternate; }
+@keyframes dg-projecteur { to { opacity: 0.7; } }
+
+.dg-scene__contenu {
+  flex: 1 0 auto;
+  display: grid;
+  align-content: start;
+  gap: var(--espace-5);
+  padding-top: var(--espace-5);
+  padding-bottom: var(--espace-6);
+  padding-left: var(--gouttiere-g);
+  padding-right: var(--gouttiere-d);
+}
+
+/* En-tête : grand titre, puis le slogan */
+.dg-scene__entete { display: grid; justify-items: start; gap: var(--espace-2); margin-bottom: var(--espace-3); }
+.dg-scene__titre {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 60px; line-height: 64px; font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Slogan qui s'écrit puis s'efface (recital.js) */
+.dg-slogan {
+  margin: 0;
+  min-height: 28px;
+  font-size: clamp(16px, 4.6vw, 18px);
+  line-height: 28px;
+  color: var(--encre-douce);
+  white-space: nowrap;
+}
+.dg-slogan__curseur {
+  display: inline-block;
+  width: 2px; height: 20px;
+  margin-left: 3px;
+  vertical-align: -4px;
+  background: var(--dore);
+  animation: dg-clignote 1.05s steps(1, end) infinite;
+}
+@keyframes dg-clignote { 50% { opacity: 0; } }
+
+/* Variante simple : petit logo, puis le titre de la page */
+.dg-scene--simple .dg-scene__contenu { padding-top: max(var(--espace-4), env(safe-area-inset-top, 0px)); }
+.dg-scene--simple .dg-scene__entete { gap: var(--espace-8); margin-bottom: 0; }
+
+/* Le clavier, posé en bas de l'écran, avec son liseré doré */
+.dg-scene__clavier { display: block; flex: none; width: 100%; height: 112px; margin-top: var(--espace-4); }
+
+/* ---------- Logo ---------- */
+.dg-logo { display: inline-flex; align-items: center; gap: var(--espace-2); color: var(--dore); }
+.dg-logo__symbole { width: 36px; height: 36px; flex: none; }
+.dg-logo__nom {
+  font-family: var(--font-display);
+  font-size: 26px; line-height: 30px; font-weight: 700;
+  color: var(--encre);
+}
+.dg-logo-lien { display: inline-flex; border-radius: var(--rayon-sm); text-decoration: none; }
+
+/* ---------- Titres et textes ---------- */
+.dg-surtitre {
+  margin: 0;
+  font-size: 12px; line-height: 16px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--dore-texte);
+}
+.dg-titre-1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 32px; line-height: 38px; font-weight: 700;
+  text-wrap: balance;
+}
+.dg-titre-2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 26px; line-height: 32px; font-weight: 700;
+  text-wrap: balance;
+}
+.dg-texte-doux { margin: 0; color: var(--encre-douce); }
+.dg-adresse { color: var(--encre); overflow-wrap: anywhere; }
+.dg-lien {
+  color: var(--lien);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  border-radius: 4px;
+}
+.dg-lien:hover { text-decoration-thickness: 2px; }
+.dg-lien--fort { color: var(--encre); font-weight: 700; }
+/* Bouton qui a l'air d'un lien (« Se déconnecter ») */
+.dg-lien--bouton { padding: 0; border: 0; background: none; cursor: pointer; }
+.dg-mention { margin: 0; font-size: 13px; line-height: 18px; color: var(--encre-douce); }
+.dg-code-erreur { margin: 0; font-size: 13px; line-height: 18px; color: var(--encre-douce); text-align: center; }
+.dg-bascule { margin: var(--espace-1) 0 0; text-align: center; color: var(--encre-douce); }
+
+/* ---------- Formulaires ---------- */
+.dg-formulaire { display: grid; gap: var(--espace-4); }
+/* Prénom et nom côte à côte, l'un sous l'autre sur les petits écrans */
+.dg-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--espace-3); }
+
+.dg-champ { display: grid; gap: 6px; min-width: 0; scroll-margin-top: var(--espace-4); }
+.dg-champ__boite { position: relative; }
+
+.dg-champ__input {
+  width: 100%;
+  min-height: 60px;
+  padding: 24px 16px 8px;
+  /* 16px minimum : en dessous, l'iPhone zoome sur le champ quand on le touche */
+  font-size: 16px; line-height: 24px;
+  color: var(--encre);
+  background: var(--fond);
+  border: 1px solid var(--ligne-forte);
+  border-radius: var(--rayon-sm);
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 120ms, box-shadow 120ms;
+}
+.dg-champ--icone .dg-champ__input { padding-left: 48px; }
+.dg-champ__input::placeholder { color: transparent; }
+.dg-champ__input:hover { border-color: var(--encre-douce); }
+.dg-champ__input:focus { outline: none; border-color: var(--lien); box-shadow: var(--anneau-focus); }
+
+/* Libellé flottant : dans le champ quand il est vide, en petit en haut dès qu'on tape */
+.dg-champ__label {
+  position: absolute;
+  top: 18px; left: 17px; right: 16px;
+  font-size: 16px; line-height: 24px;
+  color: var(--encre-douce);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 140ms ease-out, color 140ms;
+}
+.dg-champ--icone .dg-champ__label { left: 49px; }
+.dg-champ__input:focus + .dg-champ__label,
+.dg-champ__input:not(:placeholder-shown) + .dg-champ__label { transform: translateY(-11px) scale(0.75); }
+.dg-champ__input:-webkit-autofill + .dg-champ__label { transform: translateY(-11px) scale(0.75); }
+.dg-champ__input:focus + .dg-champ__label { color: var(--dore-texte); }
+
+.dg-champ__icone {
+  position: absolute;
+  top: 19px; left: 16px;
+  width: 22px; height: 22px;
+  fill: none;
+  stroke: var(--encre-douce);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+  transition: stroke 140ms;
+}
+.dg-champ__boite:focus-within .dg-champ__icone { stroke: var(--dore-texte); }
+
+/* Champ rempli automatiquement par le navigateur : on garde les couleurs du thème */
+.dg-champ__input:-webkit-autofill {
+  -webkit-text-fill-color: var(--encre);
+  caret-color: var(--encre);
+  box-shadow: inset 0 0 0 100px #2A1748;
+}
+.dg-champ__input:-webkit-autofill:focus { box-shadow: inset 0 0 0 100px #2A1748, var(--anneau-focus); }
+
+.dg-champ__aide { margin: 0 4px; font-size: 13px; line-height: 18px; color: var(--encre-douce); }
+
+.dg-champ--erreur .dg-champ__input { border-color: var(--a-revoir); box-shadow: inset 0 0 0 1px var(--a-revoir); }
+.dg-champ--erreur .dg-champ__input:focus { box-shadow: inset 0 0 0 1px var(--a-revoir), var(--anneau-focus); }
+
+/* Message d'erreur : toujours un mot et une icône, jamais la couleur seule */
+.dg-champ__erreur {
+  display: flex;
+  gap: 6px;
+  margin: 0 4px;
+  font-size: 14px; line-height: 20px; font-weight: 700;
+  color: var(--a-revoir);
+}
+.dg-champ__erreur::before {
+  content: "";
+  flex: none;
+  width: 18px; height: 18px;
+  margin-top: 1px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7.5v5.5M12 16.5h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7.5v5.5M12 16.5h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* ---------- Mot de passe : bouton « œil » ---------- */
+[data-password-field] .dg-champ__input { padding-right: 56px; }
+[data-password-field] .dg-champ__label { right: 56px; }
+/* Edge ajoute son propre bouton œil sur ordinateur : on garde seulement le nôtre */
+[data-password-field] .dg-champ__input::-ms-reveal,
+[data-password-field] .dg-champ__input::-ms-clear { display: none; }
+.dg-champ__oeil {
+  position: absolute;
+  top: 6px; right: 6px; bottom: 6px;
+  width: 48px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--encre-douce);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.dg-champ__oeil:hover, .dg-champ__oeil[aria-pressed="true"] { color: var(--encre); }
+.dg-champ__oeil:focus-visible { box-shadow: inset 0 0 0 2px var(--lien); }
+.dg-champ__oeil svg {
+  width: 24px; height: 24px;
+  fill: none; stroke: currentColor; stroke-width: 1.8;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ---------- Mot de passe : règles cochées pendant la saisie ---------- */
+.dg-regles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 0 4px;
+  padding: 0;
+  list-style: none;
+  font-size: 13px; line-height: 20px;
+  color: var(--encre-douce);
+}
+.dg-regles li { display: flex; align-items: center; gap: 6px; }
+.dg-regles li::before {
+  content: "";
+  flex: none;
+  width: 16px; height: 16px;
+  border: 2px solid var(--ligne-forte);
+  border-radius: var(--rayon-plein);
+  transition: background-color 120ms, border-color 120ms;
+}
+.dg-regles li.est-ok { color: var(--encre); }
+.dg-regles li.est-ok::before {
+  border-color: var(--juste);
+  background: var(--juste) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.8' fill='none' stroke='%2312332B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+
+/* ---------- Cases à cocher ---------- */
+.dg-cases { display: grid; gap: var(--espace-4); }
+.dg-case {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 6px var(--espace-3);
+  align-items: start;
+  scroll-margin-top: var(--espace-4);
+}
+.dg-case__input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px; height: 24px;
+  margin: 0;
+  border: 2px solid var(--ligne-forte);
+  border-radius: 6px;
+  background: var(--fond) center / 16px no-repeat;
+  cursor: pointer;
+}
+.dg-case__input:checked {
+  border-color: var(--dore);
+  background-color: var(--dore);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.4l3 3 6-6.4' fill='none' stroke='%231A0B2E' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.dg-case__input:focus-visible { box-shadow: var(--anneau-focus); }
+.dg-case__label { font-size: 15px; line-height: 24px; cursor: pointer; }
+.dg-case .dg-champ__erreur { grid-column: 2; margin: 0; }
+.dg-case--erreur .dg-case__input { border-color: var(--a-revoir); }
+
+/* « Se souvenir de moi » et « Mot de passe oublié ? » sur la même ligne */
+.dg-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-2) var(--espace-4);
+  font-size: 15px;
+}
+
+/* ---------- Boutons ---------- */
+.dg-bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espace-2);
+  min-height: 48px;
+  padding: 0 var(--espace-6);
+  font-family: var(--font-texte);
+  font-size: 16px; line-height: 24px; font-weight: 700;
+  color: var(--sur-action);
+  background: var(--action);
+  border: 2px solid var(--action);
+  border-radius: var(--rayon-md);
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 80ms ease-out;
+}
+.dg-bouton:active { transform: translateY(1px); }
+.dg-bouton--large { width: 100%; min-height: 56px; }
+.dg-bouton--secondaire { color: var(--encre); background: transparent; border-color: var(--ligne-forte); }
+.dg-bouton--petit { min-height: 44px; padding: 0 var(--espace-4); font-size: 15px; }
+.dg-bouton__fleche {
+  width: 20px; height: 20px;
+  fill: none; stroke: currentColor; stroke-width: 2.2;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 150ms ease-out;
+}
+.dg-bouton:hover .dg-bouton__fleche { transform: translateX(3px); }
+/* Pendant l'envoi du formulaire */
+.dg-bouton[aria-disabled="true"] { cursor: progress; opacity: 0.75; transform: none; }
+
+/* ---------- Messages en haut de page ---------- */
+.dg-alerte {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: var(--espace-3);
+  align-items: start;
+  padding: 14px var(--espace-4);
+  border-radius: var(--rayon-md);
+  background: var(--juste-doux);
+  color: var(--encre);
+  scroll-margin-top: var(--espace-4);
+}
+.dg-alerte:focus { outline: none; }
+.dg-alerte:focus-visible { box-shadow: var(--anneau-focus); }
+.dg-alerte__icone {
+  width: 24px; height: 24px;
+  color: var(--juste);
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.dg-alerte--erreur { background: var(--a-revoir-doux); }
+.dg-alerte--erreur .dg-alerte__icone { color: var(--a-revoir); }
+.dg-alerte__corps { display: grid; gap: 6px; min-width: 0; }
+.dg-alerte__titre { margin: 0; font-weight: 700; }
+.dg-alerte__liste { display: grid; gap: 4px; margin: 0; padding-left: 18px; }
+.dg-alerte__liste a {
+  color: var(--encre);
+  text-decoration: underline;
+  text-decoration-color: var(--a-revoir);
+  text-underline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Carte (accueil) ---------- */
+.dg-carte {
+  display: grid;
+  gap: var(--espace-3);
+  padding: var(--espace-4);
+  background: var(--surface);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-md);
+  box-shadow: var(--ombre-carte);
+}
+.dg-carte__titre { margin: 0; font-size: 18px; line-height: 24px; font-weight: 700; }
+.dg-infos { display: grid; gap: var(--espace-3); margin: 0; }
+.dg-infos div { display: grid; gap: 2px; }
+.dg-infos dt { font-size: 13px; line-height: 18px; color: var(--encre-douce); }
+.dg-infos dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+
+/* Carte entière cliquable, avec une flèche (accueil → profil) */
+.dg-carte--lien {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  color: var(--encre);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.dg-carte--lien:hover { border-color: var(--ligne-forte); }
+.dg-carte__corps { display: grid; gap: var(--espace-1); }
+
+/* Flèches « › » des liens de liste */
+.dg-carte--lien > svg, .dg-menu__lien svg {
+  flex: none;
+  width: 20px; height: 20px;
+  fill: none; stroke: var(--encre-douce); stroke-width: 2.2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ---------- Espace des élèves connectés : en-tête, contenu, onglets en bas ---------- */
+.dg-espace {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+.dg-espace__haut {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: max(var(--espace-4), env(safe-area-inset-top, 0px)) var(--gouttiere-d) 0 var(--gouttiere-g);
+  box-sizing: content-box;
+}
+.dg-espace__contenu {
+  flex: 1 0 auto;
+  display: grid;
+  align-content: start;
+  gap: var(--espace-6);
+  padding: var(--espace-5) var(--gouttiere-d) var(--espace-8) var(--gouttiere-g);
+}
+
+/* Bouton « Retour » des sous-pages du profil */
+.dg-retour {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espace-1);
+  min-height: 44px;
+  margin-left: calc(-1 * var(--espace-2));
+  padding: 0 var(--espace-3) 0 var(--espace-1);
+  border-radius: var(--rayon-sm);
+  color: var(--encre);
+  font-weight: 700;
+  text-decoration: none;
+}
+.dg-retour svg {
+  width: 24px; height: 24px;
+  fill: none; stroke: currentColor; stroke-width: 2.2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.dg-retour:hover { color: var(--lien); }
+
+/* Onglets en bas de l'écran, à portée de pouce : ils restent visibles pendant le défilement */
+.dg-nav {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--espace-1);
+  padding: var(--espace-2) var(--gouttiere-d) max(var(--espace-2), env(safe-area-inset-bottom, 0px)) var(--gouttiere-g);
+  border-top: 1px solid var(--ligne);
+  background: var(--surface);
+}
+.dg-onglet {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 2px;
+  min-height: 52px;
+  padding: 6px 0 4px;
+  border-radius: var(--rayon-md);
+  color: var(--encre-douce);
+  font-size: 12px; line-height: 14px; font-weight: 700;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.dg-onglet svg {
+  width: 24px; height: 24px;
+  fill: none; stroke: currentColor; stroke-width: 2.2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.dg-onglet:hover { color: var(--encre); }
+.dg-onglet[aria-current="page"] { background: var(--violet); color: var(--sur-violet); }
+.dg-onglet[aria-current="page"] svg { color: var(--dore); }
+
+/* ---------- Profil ---------- */
+.dg-profil { display: flex; align-items: center; gap: var(--espace-4); }
+.dg-profil__texte { display: grid; gap: var(--espace-1); min-width: 0; }
+/* Un peu plus petit qu'un titre de page : les prénoms composés tiennent à côté du rond.
+   Un nom très long se coupe avec un trait d'union plutôt que de déborder. */
+.dg-profil .dg-titre-1 { font-size: 28px; line-height: 34px; overflow-wrap: break-word; hyphens: auto; }
+/* Rond aux initiales, violet et or, comme le logo */
+.dg-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 72px; height: 72px;
+  border-radius: var(--rayon-plein);
+  background: var(--violet);
+  box-shadow: 0 0 0 3px var(--surface), 0 0 0 4px var(--dore);
+  color: var(--dore);
+  font-family: var(--font-display);
+  font-size: 28px; line-height: 1; font-weight: 700;
+}
+
+/* Les chiffres des progrès, deux par ligne */
+.dg-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espace-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dg-stat {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  padding: var(--espace-3);
+  border-radius: var(--rayon-md);
+  background: var(--fond);
+  font-size: 14px; line-height: 20px;
+  color: var(--encre-douce);
+}
+.dg-stat__nombre {
+  font-family: var(--font-display);
+  font-size: 28px; line-height: 34px; font-weight: 700;
+  color: var(--dore-texte);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Réglages : boutons à bascule (de vrais boutons radio, cachés derrière leur texte) */
+.dg-reglage { min-width: 0; margin: 0; padding: 0; border: 0; }
+.dg-reglage__nom { padding: 0; margin-bottom: 2px; font-weight: 700; }
+.dg-reglage__aide { margin: 0 0 var(--espace-2); font-size: 13px; line-height: 18px; color: var(--encre-douce); }
+.dg-segments {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--rayon-plein);
+  background: var(--fond);
+}
+.dg-segment { position: relative; flex: 1 1 0; display: flex; min-width: 0; }
+.dg-segment__input {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.dg-segment__texte {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 0 var(--espace-2);
+  border-radius: var(--rayon-plein);
+  color: var(--encre-douce);
+  font-size: 15px; line-height: 20px; font-weight: 700;
+  text-align: center;
+  pointer-events: none;
+  transition: background-color 120ms, color 120ms;
+}
+.dg-segment:hover .dg-segment__texte { color: var(--encre); }
+.dg-segment__input:checked + .dg-segment__texte { background: var(--violet); color: var(--sur-violet); }
+.dg-segment__input:focus-visible + .dg-segment__texte { box-shadow: var(--anneau-focus); }
+/* Mode « contraste élevé » de Windows : le choix reste visible sans les couleurs */
+@media (forced-colors: active) {
+  .dg-segment__input:checked + .dg-segment__texte { outline: 2px solid CanvasText; }
+}
+
+/* Liens « Modifier mon prénom… », « Changer mon mot de passe » */
+.dg-menu {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ligne);
+}
+.dg-menu li + li { border-top: 1px solid var(--ligne); }
+.dg-menu__lien {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-3);
+  min-height: 52px;
+  padding: var(--espace-2) 0;
+  border-radius: var(--rayon-sm);
+  color: var(--encre);
+  font-weight: 700;
+  text-decoration: none;
+}
+.dg-menu__lien:hover { color: var(--lien); }
+
+/* ---------- Page « Bientôt disponible » ---------- */
+.dg-bientot { display: grid; justify-items: start; gap: var(--espace-3); }
+.dg-pastille {
+  margin: 0;
+  padding: 4px 12px;
+  border: 1px solid var(--dore);
+  border-radius: var(--rayon-plein);
+  color: var(--dore-texte);
+  font-size: 12px; line-height: 16px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+.dg-bientot__texte { margin: 0; font-size: 17px; line-height: 26px; }
+
+/* ---------- Pied de page ---------- */
+.dg-pied {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 var(--espace-6);
+  font-size: 14px; line-height: 20px;
+}
+/* Zone de toucher plus haute que le texte */
+.dg-pied a { padding: 12px 2px; }
+
+/* ---------- Pages légales ---------- */
+.dg-texte-legal { overflow-wrap: break-word; }
+.dg-texte-legal > .dg-titre-1 { margin-bottom: var(--espace-3); }
+.dg-texte-legal h2 {
+  margin: var(--espace-8) 0 var(--espace-2);
+  font-family: var(--font-display);
+  font-size: 24px; line-height: 30px; font-weight: 600;
+  text-wrap: balance;
+}
+.dg-texte-legal h3 { margin: var(--espace-5) 0 var(--espace-1); font-size: 18px; line-height: 24px; font-weight: 700; }
+.dg-texte-legal p, .dg-texte-legal ul, .dg-texte-legal ol { margin: 0 0 var(--espace-3); }
+.dg-texte-legal ul, .dg-texte-legal ol { padding-left: 22px; }
+.dg-texte-legal li + li { margin-top: 6px; }
+.dg-texte-legal li::marker { color: var(--dore-texte); }
+.dg-texte-legal a {
+  color: var(--lien);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  border-radius: 4px;
+}
+.dg-texte-legal em { font-style: normal; color: var(--encre-douce); }
+.dg-texte-legal code {
+  padding: 1px 6px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  background: var(--fond);
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+/* Encadré « En bref » en tête de chaque texte */
+.dg-texte-legal blockquote {
+  margin: var(--espace-4) 0;
+  padding: var(--espace-4);
+  background: var(--fond);
+  border-left: 3px solid var(--dore);
+  border-radius: var(--rayon-md);
+}
+.dg-texte-legal blockquote p:last-child { margin-bottom: 0; }
+
+/* ---------- Mouvements réduits ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

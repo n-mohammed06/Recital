@@ -13,10 +13,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            // Récital : prénom et nom séparés, à la place du champ « name » d'origine.
+            $table->string('first_name', 60);
+            $table->string('last_name', 60);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            // Récital : date à laquelle l'élève a accepté les conditions d'utilisation.
+            $table->timestamp('terms_accepted_at')->nullable();
+            // Récital : dernière connexion. Un compte inutilisé pendant 2 ans sera supprimé (politique de confidentialité).
+            $table->timestamp('last_login_at')->nullable();
+            // Récital : date de l'e-mail qui prévient de la suppression d'un compte inactif.
+            $table->timestamp('inactivity_warned_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
